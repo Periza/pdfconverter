@@ -61,7 +61,10 @@
     cursor: pointer;
 }
 
-#convertButton:hover {
-    background-color: rgba(20, 20, 256, 0.6);
+.fileNotPresent:hover {
+    background-color: lightcoral;
+}
 
+.filePresent:hover {
+    background-color: lightgreen;
 }

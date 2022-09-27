@@ -1,3 +1,5 @@
+const button = document.getElementById("convertButton");
+
 document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
     const dropZoneElement = inputElement.closest(".drop-zone");
 
@@ -8,7 +10,17 @@ document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
     inputElement.addEventListener("change", event => {
         if(inputElement.files.length) {
             updateThumbnail(dropZoneElement, inputElement.files[0]);
+
+            // remove class from button
+            button.classList.remove('fileNotPresent');
+            // add class form button
+            button.classList.add('filePresent');
+
+            button.addEventListener('click', (event) => {
+                uploadFile(event, inputElement.files[0]);
+            });
         }
+
     })
 
     dropZoneElement.addEventListener("dragover", event => {
@@ -70,4 +82,20 @@ function updateThumbnail(dropZoneElement, file) {
     } else {
         thumbnailElement.style.backgroundImage = null;
     }
+
 }
+
+async function uploadFile(event, file) {
+    // new form data
+    let formData = new FormData();
+    formData.append("userfile", file);
+
+    const result = await fetch('/upload.php', {
+        method: "POST",
+        body: formData
+    });
+
+    console.log(result);
+}
+
+

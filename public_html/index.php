@@ -14,7 +14,7 @@
     </div>
 
     <div id="buttonDiv">
-        <button id="convertButton">CONVERT</button>
+        <button id="convertButton" class="fileNotPresent">CONVERT</button>
     </div>
 
     <script src="main.js"></script>
