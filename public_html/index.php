@@ -13,6 +13,9 @@
         <input type="file" name="myFile" class="drop-zone__input">
     </div>
 
+    <div id="buttonDiv">
+        <button id="convertButton">CONVERT</button>
+    </div>
 
     <script src="main.js"></script>
 </body>

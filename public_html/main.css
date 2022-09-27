@@ -46,3 +46,22 @@
     font-size: 14px;
     text-align: center;
 }
+
+#buttonDiv {
+    margin: 1.5vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#convertButton {
+    min-height: 35px;
+    min-width: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#convertButton:hover {
+    background-color: rgba(20, 20, 256, 0.6);
+
+}
