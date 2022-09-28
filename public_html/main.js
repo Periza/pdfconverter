@@ -19,6 +19,8 @@ document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
             button.addEventListener('click', (event) => {
                 uploadFile(event, inputElement.files[0]);
             });
+
+            
         }
 
     })
@@ -52,7 +54,7 @@ document.querySelectorAll(".drop-zone__input").forEach(inputElement => {
 /**
  * 
  * @param {HTMLElement} dropZoneElement 
- * @param {File} file 
+ * @param {File} file
  */
 function updateThumbnail(dropZoneElement, file) {
     let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
@@ -85,6 +87,11 @@ function updateThumbnail(dropZoneElement, file) {
 
 }
 
+/**
+ * @async
+ * @param {Event} event
+ * @param {File} file
+ */
 async function uploadFile(event, file) {
     // new form data
     let formData = new FormData();
@@ -95,7 +102,18 @@ async function uploadFile(event, file) {
         body: formData
     });
 
-    console.log(result);
+    const filename = result.headers.get('content-disposition').split("filename=")[1].split(";")[0];
+
+    const blob = await result.blob();
+    const href = URL.createObjectURL(blob);
+    
+    const pdf = Object.assign(document.createElement('a'), {href, style:"display:none", download: filename});
+
+    document.body.appendChild(pdf);
+    pdf.click();
+
+    URL.revokeObjectURL(href);
+    pdf.remove();
 }
 
 
